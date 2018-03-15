@@ -25,6 +25,7 @@ Start pyhealthz by running the following:
 Optionally, specify ``--port`` and/or ``--address`` to override defaults
 
 ::
+
     $ pyhealthz --port 8181 --address 127.0.0.1
 
 pyhealthz will run until terminated.
