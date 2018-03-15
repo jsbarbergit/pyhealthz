@@ -2,8 +2,10 @@ import ipaddress
 import socketserver
 import sys
 import signal
+import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from argparse import ArgumentParser, Action, ArgumentTypeError
+from pyhealthz import content
 
 #Custom argparse action to validate tcp port given
 class PortValidateOption(Action):
@@ -21,11 +23,8 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
         self.server_version = 'pyhealthz'
         self.sys_version = ''
         if self.path == "/healthz":
-
-            # TODO Replace this with stats
-            msg_body = '{ "cpu_usage": 5.75, "timestamp": "2018-03-15T12:14:00"}'
-            
-            
+            #Get dict of all stats
+            msg_body = json.dumps(content.get_healthz())
             self.send_response(200)
             self.send_header('Content-type','application/json')
             self.end_headers()
