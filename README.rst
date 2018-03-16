@@ -12,6 +12,15 @@ Development Environment Setup
 4. ``cd pyhealthz`` and install dependencies: ``make install``
 5. Start virtual environment ``pipenv shell``
 
+Install
+-------
+
+Wheel distribution for remote pip install
+
+::
+
+    $ pip install https://s3-eu-west-1.amazonaws.com/jb-pip-packages/pyhealthz-0.1.0-py36-none-any.whl
+
 Usage
 -----
 
