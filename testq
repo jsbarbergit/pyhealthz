@@ -1,0 +1,15 @@
+#!/usr/bin/env python3.6
+from multiprocessing import Process, Queue
+
+def f(q):
+    print(f'Queue ===> {str(q)}')
+    q.put([42, None, 'hello'])
+
+
+q = Queue()
+print(f'Queue ===> {str(q)}')
+p = Process(target=f, args=(q,))
+p.start()
+out = q.get()    # prints "[42, None, 'hello']"
+print(f'Output -> {str(out)}')
+p.join()

@@ -30,6 +30,16 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.flush_headers()
             self.wfile.write(bytes(msg_body, 'utf8'))
+        elif self.path =="/healthz/mthread":
+            # Load mthread version
+            from pyhealthz import content_mthread
+            #Get dict of all stats
+            msg_body = json.dumps(content_mthread.get_healthz())
+            self.send_response(200)
+            self.send_header('Content-type','application/json')
+            self.end_headers()
+            self.flush_headers()
+            self.wfile.write(bytes(msg_body, 'utf8'))
         elif self.path == "/":
             msg_body = '<html><head pyhealthz web server></head><body><h1>pyhealthz system resource usage data server</h1><p> call /healthz for stats</body></html>'
             self.send_response(200)
