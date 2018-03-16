@@ -36,9 +36,7 @@ def get_net_stats(pernic = True):
     rtn["network_stats"] = {}
     net_stats = psutil.net_io_counters(pernic)
     # net_io_counters returns a dict where key == nic and value is a psutil object that needs parsing
-    print(f'net_stats ---> {str(net_stats)}')
     for nic in net_stats:
-        print(f'NIC ---> {str(nic)}')
         rtn["network_stats"][nic] = psutil_result_parser(str(net_stats[nic]), 'network_stats')
     return rtn
 
